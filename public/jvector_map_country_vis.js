@@ -36,7 +36,7 @@ function jVectorMapGebiedenProvider(Private) {
 				},
 				{
 					group: 'buckets',
-					name: 'counties',
+					name: 'countries',
 					title: 'Buurtcode',
 					min: 1,
 					max: 1,

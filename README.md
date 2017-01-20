@@ -1,18 +1,12 @@
-# jVectorMapKibanaCountry
+# jVectorMapGebieden
 
-An Offline country code map visualizer for Kibana 5.0 to 5.1.1.
+A jVectormap of the Neighborhoods of the City of Amsterdam for Kibana 5.1.1.
 
-Copyright 2016 Arnaud Marchand
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-Simply unzip the content in the plugin folder of Kibana. The aggregation key must match the country code as defined in jVectorMap. (US=United States, GB=Great Britain e.t.c.)
+Simply unzip the content in the plugin folder of Kibana. The aggregation key must match the neighborhood code as defined for the City of Amsterdam neighborhoods which can be found in the <a href="https://api.datapunt.amsterdam.nl/gebieden/buurt/">API Gebieden</a> in the display name or in each URI named: vollcode for example: Kop Zeedijk = A00a.
 
 The "Normalize Input To UpperCase" simply aggregates lower and upper case values together. For example a record set with "us":2 and "US":1 becomes "US":3.
 
-Maps provided by: http://jvectormap.com/ are not free of charge for commercial products.
+Maps are obtained via this webservice: https://map.datapunt.amsterdam.nl/maps/gebieden?REQUEST=GetCapabilities&SERVICE=wfs"
 
+The plugin is a Fork of this Kibana plugin: https://github.com/snuids/Elastic-5.0-Country-Map-Visualizer
 Screenshots here: https://github.com/snuids/jVectorMapKibanaCountry/wiki
