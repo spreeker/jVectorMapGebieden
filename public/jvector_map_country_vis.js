@@ -28,7 +28,7 @@ function jVectorMapGebiedenProvider(Private) {
 		schemas: new Schemas([
 				{
 					group: 'metrics',
-					name: 'countryvalue',
+					name: 'buurtvalue',
 					title: 'Buurt waarde',
 					min: 1,
 					max: 1,
@@ -36,7 +36,7 @@ function jVectorMapGebiedenProvider(Private) {
 				},
 				{
 					group: 'buckets',
-					name: 'countries',
+					name: 'buurt',
 					title: 'Buurtcode',
 					min: 1,
 					max: 1,

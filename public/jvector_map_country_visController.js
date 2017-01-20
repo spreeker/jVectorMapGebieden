@@ -6,9 +6,6 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 
 	var filterManager = Private(require('ui/filter_manager'));
 
-
-
-
 	$scope.filter = function(tag) {
 		// Add a new filter via the filter manager
 		filterManager.add(
@@ -29,16 +26,19 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 			return;
 		}
 
-		if($scope.vis.aggs.bySchemaName['countries']== undefined)
+		console.log(resp);
+
+		if($scope.vis.aggs.bySchemaName['buurt']== undefined)
 		{
 			$scope.locations = null;
 			return;
 		}
+		console.log('WHATEVER');
 
 		// Retrieve the id of the configured tags aggregation
-		var locationsAggId = $scope.vis.aggs.bySchemaName['countries'][0].id;
+		var locationsAggId = $scope.vis.aggs.bySchemaName['buurt'][0].id;
 		// Retrieve the metrics aggregation configured
-		var metricsAgg = $scope.vis.aggs.bySchemaName['countryvalue'][0];
+		var metricsAgg = $scope.vis.aggs.bySchemaName['buurtvalue'][0];
 		var buckets = resp.aggregations[locationsAggId].buckets;
 
 
@@ -55,32 +55,7 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 
 		});
 
-		if($scope.vis.params.normalizeInput)
-		{
-			//console.log("TOTO:"+JSON.stringify($scope.locations));
-			var locshm={};
-			var locs=$scope.locations;
-			for (var i=0;i<locs.length;i++)
-			{
-				locs[i].label=locs[i].label.toUpperCase();
-				if(locshm[locs[i].label]!=null)
-				  locshm[locs[i].label].value+=locs[i].value;
-			  else
-			  		locshm[locs[i].label]=locs[i];
-			}
-
-			var locs2=[];
-
-			for (var type in locshm)
-			    locs2.push(locshm[type]);
-
-			$scope.locations=locs2;
-		}
-
-/*		$scope.locations = $scope.locations.map(function(location) {
-
-			return location;
-		});*/
+		console.log('JOLO');
 
 		// Draw Map
 
@@ -88,21 +63,22 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 
 		angular.forEach($scope.locations, function(value, key){
 			if(value.label!=undefined)
-				data[value.label.toUpperCase()]=value.value;
+				data[value.label]=value.value;
 
 		});
 
+		console.log('BIJNA');
 
-		//console.log(data);
+		console.log(data);
 
 		try { $('#map').vectorMap('get', 'mapObject').remove(); }
+
 		catch(err) {}
 
 
-
-        $('#map').vectorMap(
+        	$('#map').vectorMap(
   			  {
-  				  map: $scope.vis.params.selectedMap+'_mill',
+  			      map: $scope.vis.params.selectedMap+'_mill',
 			      series: {
 			        regions: [{
 			          values: data,
@@ -112,12 +88,10 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 			      },
 			      onRegionTipShow: function(e, el, code){
 			        el.html(el.html()+' ('+data[code]+')');
-			      }
-				  ,
-  				  backgroundColor: $scope.vis.params.mapBackgroundColor
+			      },
+			      backgroundColor: $scope.vis.params.mapBackgroundColor
   			}
   	  	);
 		// End of draw map
-
 	});
 });
