@@ -71,12 +71,12 @@ module.controller('JVectorMapCountryController', function($scope, Private) {
 
 		console.log(data);
 
-		try { $('#map').vectorMap('get', 'mapObject').remove(); }
+		try { $('#mapv').vectorMap('get', 'mapObject').remove(); }
 
 		catch(err) {}
 
 
-        	$('#map').vectorMap(
+        	$('#mapv').vectorMap(
   			  {
   			      map: $scope.vis.params.selectedMap+'_mill',
 			      series: {
